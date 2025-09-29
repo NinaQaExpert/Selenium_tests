@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Submitted Data</title>
+  <style>
+    body { font-family: Arial; background: #f9f9f9; padding: 40px; }
+    .container { background: white; padding: 30px; border-radius: 10px; max-width: 600px; margin: auto; box-shadow: 0 0 10px #ccc; }
+    h2 { text-align: center; }
+    .data-row { margin-bottom: 15px; }
+    .label { font-weight: bold; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Form Submission Summary</h2>
+    <div id="result"></div>
+  </div>
+
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const resultDiv = document.getElementById('result');
+
+    const fields = {
+      id: "ID",
+      name: "Name",
+      birthdate: "Birthdate",
+      country: "Country",
+      gender: "Gender",
+      hobbies: "Hobbies",
+      freetext: "Free Text"
+    };
+
+    for (const [key, label] of Object.entries(fields)) {
+      const value = urlParams.get(key);
+      if (value) {
+        const row = document.createElement("div");
+        row.className = "data-row";
+        row.innerHTML = `<span class="label">${label}:</span> ${value}`;
+        resultDiv.appendChild(row);
+      }
+    }
+  </script>
+</body>
+</html>
